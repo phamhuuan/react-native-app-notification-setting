@@ -15,6 +15,7 @@ export const useNotificationEnabled = () => {
 	const [enabled, setEnabled] = useState<boolean>(false);
 
 	useEffect(() => {
+		isNotificationEnabled().then(setEnabled);
 		const subscription = AppState.addEventListener('change', (nextAppState: AppStateStatus) => {
 			if (nextAppState === 'active') {
 				isNotificationEnabled().then(setEnabled);
