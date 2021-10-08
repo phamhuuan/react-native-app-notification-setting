@@ -37,6 +37,7 @@ public class ReactNativeAppNotificationSettingsModule extends ReactContextBaseJa
         IntentFilter filter = new IntentFilter();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             filter.addAction(NotificationManager.ACTION_NOTIFICATION_POLICY_ACCESS_GRANTED_CHANGED);
+            filter.addAction(NotificationManager.ACTION_NOTIFICATION_POLICY_CHANGED);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             filter.addAction(NotificationManager.ACTION_NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED);
