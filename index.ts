@@ -57,11 +57,8 @@ export const renameNotificationChannel = (channelId: string, name: string, descr
 	return ReactNativeAppNotificationSettings.renameNotificationChannel(channelId, name, description);
 }
 
-export const renameNotificationChannels = (channelIds: string[], names: string[], descriptions: string[]) => {
-	if (channelIds.length !== names.length || channelIds.length !== descriptions.length) {
-		return;
-	}
-	return ReactNativeAppNotificationSettings.renameNotificationChannels(channelIds, names, descriptions);
+export const renameNotificationChannels = (info: {channelId: string; name: string; description: string}[]) => {
+	return ReactNativeAppNotificationSettings.renameNotificationChannels(info);
 }
 
 export default {

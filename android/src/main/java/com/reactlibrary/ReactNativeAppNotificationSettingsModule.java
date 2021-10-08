@@ -4,27 +4,26 @@ package com.reactlibrary;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeArray;
+import com.facebook.react.bridge.WritableNativeMap;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class ReactNativeAppNotificationSettingsModule extends ReactContextBaseJavaModule {
@@ -99,16 +98,22 @@ public class ReactNativeAppNotificationSettingsModule extends ReactContextBaseJa
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) reactContext.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
-            HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("channelId", channelId);
-            hashMap.put("name", channel.getName().toString());
-            hashMap.put("description", channel.getDescription());
-            hashMap.put("vibrationPattern", channel.getVibrationPattern());
-            hashMap.put("sound", channel.getSound());
-            hashMap.put("importance", channel.getImportance());
-            hashMap.put("lightColor", channel.getLightColor());
-            hashMap.put("lockscreenVisibility", channel.getLockscreenVisibility());
-            promise.resolve(hashMap);
+            WritableArray vibrationPattern = new WritableNativeArray();
+            if (channel.getVibrationPattern() != null) {
+                Arrays.stream(channel.getVibrationPattern()).forEach(pattern -> {
+                    vibrationPattern.pushInt((int) pattern);
+                });
+            }
+            WritableMap map = new WritableNativeMap();
+            map.putString("channelId", channel.getId());
+            map.putString("name", channel.getName().toString());
+            map.putString("description", channel.getDescription());
+            map.putArray("vibrationPattern", vibrationPattern);
+            map.putString("sound", channel.getSound().toString());
+            map.putInt("importance", channel.getImportance());
+            map.putInt("lightColor", channel.getLightColor());
+            map.putInt("lockscreenVisibility", channel.getLockscreenVisibility());
+            promise.resolve(map);
         }
     }
 
@@ -117,18 +122,24 @@ public class ReactNativeAppNotificationSettingsModule extends ReactContextBaseJa
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) reactContext.getSystemService(Context.NOTIFICATION_SERVICE);
             List<NotificationChannel> notificationChannelList = notificationManager.getNotificationChannels();
-            List<HashMap<String, Object>> list = new ArrayList<>();
+            WritableArray list = new WritableNativeArray();
             notificationChannelList.forEach(channel -> {
-                HashMap<String, Object> hashMap = new HashMap<>();
-                hashMap.put("channelId", channel.getId());
-                hashMap.put("name", channel.getName().toString());
-                hashMap.put("description", channel.getDescription());
-                hashMap.put("vibrationPattern", channel.getVibrationPattern());
-                hashMap.put("sound", channel.getSound());
-                hashMap.put("importance", channel.getImportance());
-                hashMap.put("lightColor", channel.getLightColor());
-                hashMap.put("lockscreenVisibility", channel.getLockscreenVisibility());
-                list.add(hashMap);
+                WritableArray vibrationPattern = new WritableNativeArray();
+                if (channel.getVibrationPattern() != null) {
+                    Arrays.stream(channel.getVibrationPattern()).forEach(pattern -> {
+                        vibrationPattern.pushInt((int) pattern);
+                    });
+                }
+                WritableMap map = new WritableNativeMap();
+                map.putString("channelId", channel.getId());
+                map.putString("name", channel.getName().toString());
+                map.putString("description", channel.getDescription());
+                map.putArray("vibrationPattern", vibrationPattern);
+                map.putString("sound", channel.getSound().toString());
+                map.putInt("importance", channel.getImportance());
+                map.putInt("lightColor", channel.getLightColor());
+                map.putInt("lockscreenVisibility", channel.getLockscreenVisibility());
+                list.pushMap(map);
             });
             promise.resolve(list);
         }
@@ -145,15 +156,21 @@ public class ReactNativeAppNotificationSettingsModule extends ReactContextBaseJa
     }
 
     @ReactMethod
-    public void renameNotificationChannels(List<String> channelIds, List<String> names, List<String> descriptions) {
+    public void renameNotificationChannels(ReadableArray array) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationManager notificationManager = (NotificationManager) reactContext.getSystemService(Context.NOTIFICATION_SERVICE);
             List<NotificationChannel> notificationChannelList = notificationManager.getNotificationChannels();
-            notificationChannelList.forEach(notificationChannel -> {
-                int index = channelIds.indexOf(notificationChannel.getId());
-                notificationChannel.setName(names.get(index));
-                notificationChannel.setDescription(descriptions.get(index));
-            });
+            for (int i = 0; i < array.size(); i++) {
+                ReadableMap map = array.getMap(i);
+                for (int j = 0; j < notificationChannelList.size(); j++) {
+                    assert map != null;
+                    if (notificationChannelList.get(j).getId().equals(map.getString("channelId"))) {
+                        notificationChannelList.get(j).setName(map.getString("name"));
+                        notificationChannelList.get(j).setDescription(map.getString("description"));
+                        break;
+                    }
+                }
+            }
         }
     }
 }
