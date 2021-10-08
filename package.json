@@ -17,8 +17,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-app-notification-settings.git",
-    "baseUrl": "https://github.com/github_account/react-native-app-notification-settings"
+    "url": "git+https://github.com/phamhuuan/react-native-app-notification-setting.git",
+    "baseUrl": "https://github.com/phamhuuan/react-native-app-notification-setting"
   },
   "keywords": [
     "react-native"
