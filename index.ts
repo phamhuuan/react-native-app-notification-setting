@@ -11,7 +11,7 @@ export const isNotificationEnabled = async () => {
 	return await ReactNativeAppNotificationSettings.isNotificationEnabled();
 };
 
-const deviceInfoEmitter = new NativeEventEmitter(ReactNativeAppNotificationSettings);
+const notificationEnabledStatusEmitter = new NativeEventEmitter(ReactNativeAppNotificationSettings);
 
 export const useNotificationEnabled = () => {
 	const [enabled, setEnabled] = useState<boolean>(false);
@@ -28,12 +28,12 @@ export const useNotificationEnabled = () => {
 
 		initialize();
 
-		const subscription = deviceInfoEmitter.addListener(
+		notificationEnabledStatusEmitter.addListener(
       'NOTIFICATION_IMPORTANCE_CHANGE',
       onChange,
     );
 
-    return () => subscription.remove();
+    return () => notificationEnabledStatusEmitter.removeAllListeners('NOTIFICATION_IMPORTANCE_CHANGE');
 	} , []);
 
 	return enabled;
