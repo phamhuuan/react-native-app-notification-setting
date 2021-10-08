@@ -1,8 +1,8 @@
 {
   "name": "@phamhuuan/react-native-app-notification-settings",
-  "title": "React Native App Notification Settings",
-  "version": "1.0.1",
-  "description": "TODO",
+  "title": "React Native App Notification Setting",
+  "version": "1.0.3",
+  "description": "App Notification Setting",
   "main": "index.ts",
   "files": [
     "README.md",
