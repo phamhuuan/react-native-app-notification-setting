@@ -32,29 +32,6 @@ public class ReactNativeAppNotificationSettingsModule extends ReactContextBaseJa
         this.reactContext = reactContext;
     }
 
-    @Override
-    public void initialize() {
-        IntentFilter filter = new IntentFilter();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            filter.addAction(NotificationManager.ACTION_NOTIFICATION_POLICY_ACCESS_GRANTED_CHANGED);
-            filter.addAction(NotificationManager.ACTION_NOTIFICATION_POLICY_CHANGED);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            filter.addAction(NotificationManager.ACTION_NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED);
-            filter.addAction(NotificationManager.ACTION_NOTIFICATION_CHANNEL_GROUP_BLOCK_STATE_CHANGED);
-            filter.addAction(NotificationManager.ACTION_APP_BLOCK_STATE_CHANGED);
-        }
-
-        BroadcastReceiver receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                int importanceState = getNotificationState();
-                sendEvent(reactContext, NOTIFICATION_IMPORTANCE_CHANGE, importanceState);
-            }
-        };
-        getReactApplicationContext().registerReceiver(receiver, filter);
-    }
-
     @NonNull
     @Override
     public String getName() {
