@@ -2,7 +2,7 @@
 
 ## Getting started
 
-`$ npm install react-native-app-notification-settings --save`
+`$ npm install @phamhuuan/react-native-app-notification-settings --save`
 
 ### Mostly automatic installation
 
