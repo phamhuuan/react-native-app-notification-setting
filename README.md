@@ -15,17 +15,30 @@
 import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
 ```
 
-# Open notification settings
+# Open notification setting
 ```javascript
 import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
 
-ReactNativeAppNotificationSettings.openNotificationSettings();
+ReactNativeAppNotificationSettings.openNotificationSetting();
 
 // or
 
-import {openNotificationSettings} from 'react-native-app-notification-settings';
+import {openNotificationSetting} from 'react-native-app-notification-settings';
 
-openNotificationSettings();
+openNotificationSetting();
+```
+
+# Open notification channel settings
+```javascript
+import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+
+ReactNativeAppNotificationSettings.openNotificationChannelSetting();
+
+// or
+
+import {openNotificationChannelSetting} from 'react-native-app-notification-settings';
+
+openNotificationChannelSetting();
 ```
 
 # Get notification enabled status
