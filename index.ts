@@ -1,9 +1,12 @@
 import {useEffect, useState} from 'react';
 import {AppState, AppStateStatus, NativeModules} from 'react-native';
-import Importance from './app/@types/Importance';
-import LockscreenVisibility from './app/@types/LockscreenVisibility';
-import NotificationChannelSetting from './app/@types/NotificationChannelSetting';
+import NCS from './app/@types/NotificationChannelSetting';
+import I from './app/@types/Importance';
+import LV from './app/@types/LockscreenVisibility';
 
+export type NotificationChannelSetting = NCS;
+export const Importance = I;
+export const LockscreenVisibility = LV;
 
 const {ReactNativeAppNotificationSettings} = NativeModules;
 
@@ -61,7 +64,22 @@ export const renameNotificationChannels = (info: {channelId: string; name: strin
 	return ReactNativeAppNotificationSettings.renameNotificationChannels(info);
 }
 
-export default {
+interface ModuleType {
+	createNotificationChannel: (channelId: string, name: string, description: string) => void;
+	deleteNotificationChannel: (channelId: string) => void;
+	getNotificationChannelSetting: (channelId: string) => Promise<NotificationChannelSetting>;
+	getNotificationChannelsSetting: () => Promise<NotificationChannelSetting[]>;
+	isNotificationEnabled: () => Promise<boolean>;
+	openNotificationSetting: () => void;
+	openNotificationChannelSetting: (channelId: string) => void;
+	renameNotificationChannel: (channelId: string, name: string, description: string) => void;
+	renameNotificationChannels: (info: {channelId: string; name: string; description: string}[]) => void;
+	useNotificationEnabled: () => boolean;
+	Importance: typeof I;
+	LockscreenVisibility: typeof LV;
+}
+
+const module: ModuleType = {
 	openNotificationSetting,
 	openNotificationChannelSetting,
 	isNotificationEnabled,
@@ -74,5 +92,6 @@ export default {
 	renameNotificationChannels,
 	Importance,
 	LockscreenVisibility,
-	NotificationChannelSetting,
 };
+
+export default module;

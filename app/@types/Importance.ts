@@ -1,8 +1,10 @@
-export default class Importance {
-	public static readonly IMPORTANCE_UNSPECIFIED: number = -1000;
-	public static readonly IMPORTANCE_NONE: number = 0;
-	public static readonly IMPORTANCE_MIN: number = 1;
-	public static readonly IMPORTANCE_LOW: number = 2;
-	public static readonly IMPORTANCE_DEFAULT: number = 3;
-	public static readonly IMPORTANCE_HIGH: number = 4;
+enum Importance {
+	IMPORTANCE_UNSPECIFIED = -1000,
+	IMPORTANCE_NONE = 0,
+	IMPORTANCE_MIN = 1,
+	IMPORTANCE_LOW = 2,
+	IMPORTANCE_DEFAULT = 3,
+	IMPORTANCE_HIGH = 4
 }
+
+export default Importance;

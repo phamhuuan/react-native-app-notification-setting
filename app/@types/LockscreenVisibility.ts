@@ -1,3 +1,5 @@
-export default class LockscreenVisibility {
-	public static readonly VISIBILITY_NO_OVERRIDE: number = -1000;
+enum LockscreenVisibility {
+	VISIBILITY_NO_OVERRIDE = -1000,
 }
+
+export default LockscreenVisibility;

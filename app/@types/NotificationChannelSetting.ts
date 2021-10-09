@@ -1,10 +1,10 @@
-export default class NotificationChannelSetting {
-	public readonly channelId: string;
-	public readonly name: string | null;
-	public readonly description: string | null;
-	public readonly vibrationPattern: number[];
-	public readonly sound: string;
-	public readonly importance: number;
-	public readonly lightColor: number;
-	public readonly lockscreenVisibility: number;
+export default interface NotificationChannelSetting {
+	readonly channelId: string;
+	readonly name: string | null;
+	readonly description: string | null;
+	readonly vibrationPattern: number[];
+	readonly sound: string;
+	readonly importance: number;
+	readonly lightColor: number;
+	readonly lockscreenVisibility: number;
 }
