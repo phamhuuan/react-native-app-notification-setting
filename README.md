@@ -1,4 +1,4 @@
-# react-native-app-notification-settings
+# @phamhuuan/react-native-app-notification-settings
 
 ## Getting started
 
@@ -6,96 +6,96 @@
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-app-notification-settings`
+`$ react-native link @phamhuuan/react-native-app-notification-settings`
 
 ## Usage
 
 # Import
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 ```
 
 # Open notification setting
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 ReactNativeAppNotificationSettings.openNotificationSetting();
 
 // or
 
-import {openNotificationSetting} from 'react-native-app-notification-settings';
+import {openNotificationSetting} from '@phamhuuan/react-native-app-notification-settings';
 
 openNotificationSetting();
 ```
 
 # Open notification channel settings
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 ReactNativeAppNotificationSettings.openNotificationChannelSetting();
 
 // or
 
-import {openNotificationChannelSetting} from 'react-native-app-notification-settings';
+import {openNotificationChannelSetting} from '@phamhuuan/react-native-app-notification-settings';
 
 openNotificationChannelSetting();
 ```
 
 # Get notification enabled status
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 const status = await ReactNativeAppNotificationSettings.isNotificationEnabled();
 
 // or
 
-import {isNotificationEnabled} from 'react-native-app-notification-settings';
+import {isNotificationEnabled} from '@phamhuuan/react-native-app-notification-settings';
 
 const status = await isNotificationEnabled();
 ```
 
 # Hook
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 const status = ReactNativeAppNotificationSettings.useNotificationEnabled();
 
 // or
 
-import {useNotificationEnabled} from 'react-native-app-notification-settings';
+import {useNotificationEnabled} from '@phamhuuan/react-native-app-notification-settings';
 
 const status = useNotificationEnabled();
 ```
 
 # Create notification channel
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 ReactNativeAppNotificationSettings.createNotificationChannel(channelId, name, description);
 
 // or
 
-import {createNotificationChannel} from 'react-native-app-notification-settings';
+import {createNotificationChannel} from '@phamhuuan/react-native-app-notification-settings';
 
 createNotificationChannel(channelId, name, description);
 ```
 
 # Delete notification channel
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 ReactNativeAppNotificationSettings.deleteNotificationChannel(channelId);
 
 // or
 
-import {deleteNotificationChannel} from 'react-native-app-notification-settings';
+import {deleteNotificationChannel} from '@phamhuuan/react-native-app-notification-settings';
 
 deleteNotificationChannel(channelId);
 ```
 
 # Get notification channel
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 const {
 	channelId,
@@ -109,7 +109,7 @@ const {
 
 // or
 
-import {getNotificationChannelSetting} from 'react-native-app-notification-settings';
+import {getNotificationChannelSetting} from '@phamhuuan/react-native-app-notification-settings';
 
 const {
 	channelId,
@@ -124,33 +124,33 @@ const {
 
 # Get all notification channels
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 const channels = await ReactNativeAppNotificationSettings.getNotificationChannelsSetting(channelId);
 
 // or
 
-import {getNotificationChannelsSetting} from 'react-native-app-notification-settings';
+import {getNotificationChannelsSetting} from '@phamhuuan/react-native-app-notification-settings';
 
 const channels = await getNotificationChannelsSetting(channelId);
 ```
 
 # Rename notification channel
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 ReactNativeAppNotificationSettings.renameNotificationChannel(channelId, name, description);
 
 // or
 
-import {renameNotificationChannel} from 'react-native-app-notification-settings';
+import {renameNotificationChannel} from '@phamhuuan/react-native-app-notification-settings';
 
 renameNotificationChannel(channelId, name, description);
 ```
 
 # Rename multiple notification channels
 ```javascript
-import ReactNativeAppNotificationSettings from 'react-native-app-notification-settings';
+import ReactNativeAppNotificationSettings from '@phamhuuan/react-native-app-notification-settings';
 
 const channels = [
 	{
@@ -170,7 +170,7 @@ ReactNativeAppNotificationSettings.renameNotificationChannels(channels);
 
 // or
 
-import {renameNotificationChannels} from 'react-native-app-notification-settings';
+import {renameNotificationChannels} from '@phamhuuan/react-native-app-notification-settings';
 
 const channels = [
 	{

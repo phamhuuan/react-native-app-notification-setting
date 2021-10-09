@@ -74,4 +74,5 @@ export default {
 	renameNotificationChannels,
 	Importance,
 	LockscreenVisibility,
+	NotificationChannelSetting,
 };
